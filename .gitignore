@@ -1,0 +1,16 @@
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.d
+*.crf
+*.iex
+*.bak
+KeilKill.bat
+DebugConfig/
+Listing/
+Objects/
+Output/
+RTE/
