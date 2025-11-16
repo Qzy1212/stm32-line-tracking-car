@@ -82,3 +82,12 @@ void Motor_Stop(void)
     __HAL_TIM_SET_COMPARE(&htim3, MOTOR_L_PWM_CH, 0);
     __HAL_TIM_SET_COMPARE(&htim3, MOTOR_R_PWM_CH, 0);
 }
+
+void Motor_Brake(void)
+{
+    /* 刹车: 所有方向引脚置高，短路电机 */
+    HAL_GPIO_WritePin(MOTOR_L_IN1_PORT, MOTOR_L_IN1_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MOTOR_L_IN2_PORT, MOTOR_L_IN2_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MOTOR_R_IN3_PORT, MOTOR_R_IN3_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MOTOR_R_IN4_PORT, MOTOR_R_IN4_PIN, GPIO_PIN_SET);
+}
