@@ -27,3 +27,9 @@ void Motor_Brake(void);
 uint8_t Motor_GetStatus(void);
 
 #endif /* __MOTOR_H */
+
+/* 速度参数宏 */
+#define MOTOR_SPEED_MAX   1000
+#define MOTOR_SPEED_MIN   0
+#define MOTOR_BASE_SPEED  600
+#define MOTOR_TURN_BIAS   400
