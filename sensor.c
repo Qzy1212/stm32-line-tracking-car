@@ -44,3 +44,25 @@ int8_t Sensor_GetError(uint8_t value)
         default:      return  0;
     }
 }
+
+/* 多次采样取众数滤波 */
+uint8_t Sensor_Filter(Sensor_Data_t *data, uint8_t times)
+{
+    uint8_t count[SENSOR_COUNT] = {0};
+    Sensor_Data_t tmp;
+    for (uint8_t t = 0; t < times; t++) {
+        Sensor_Read(&tmp);
+        for (int i = 0; i < SENSOR_COUNT; i++) {
+            if (tmp.raw[i]) count[i]++;
+        }
+        HAL_Delay(1);
+    }
+    data->value = 0;
+    uint8_t threshold = times / 2;
+    for (int i = 0; i < SENSOR_COUNT; i++) {
+        data->raw[i] = (count[i] > threshold) ? 1 : 0;
+        data->value |= (data->raw[i] << i);
+    }
+    data->error = Sensor_GetError(data->value);
+    return data->value;
+}
