@@ -21,6 +21,6 @@ int main(void)
     while (1)
     {
         Sensor_Read(&sensor_data);
-        /* TODO: PID 计算与电机控制 */
+        Motor_SetSpeed(MOTOR_BASE_SPEED, MOTOR_BASE_SPEED);
     }
 }
