@@ -64,3 +64,5 @@ uint8_t Sensor_Filter(Sensor_Data_t *data, uint8_t times)
     data->error = Sensor_GetError(data->value);
     return data->value;
 }
+
+// 2025.11.20 墙：优化传感器读取稳定性，增加去抖延迟
