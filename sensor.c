@@ -25,10 +25,9 @@ void Sensor_Read(Sensor_Data_t *data)
         data->raw[i] = (HAL_GPIO_ReadPin(SENSOR_PORT[i], SENSOR_PIN[i]) == GPIO_PIN_RESET) ? 1 : 0;
         data->value |= (data->raw[i] << i);
     }
+    data->error = Sensor_GetError(data->value);
 }
 
-/* 偏差权重表: 传感器布局 S1 S2 S3 S4 S5 */
-/* 居中(S3=1) -> error=0, 偏左 -> 负, 偏右 -> 正 */
 int8_t Sensor_GetError(uint8_t value)
 {
     switch (value) {
@@ -45,7 +44,6 @@ int8_t Sensor_GetError(uint8_t value)
     }
 }
 
-/* 多次采样取众数滤波 */
 uint8_t Sensor_Filter(Sensor_Data_t *data, uint8_t times)
 {
     uint8_t count[SENSOR_COUNT] = {0};
