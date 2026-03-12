@@ -91,3 +91,10 @@ void Motor_Brake(void)
     HAL_GPIO_WritePin(MOTOR_R_IN3_PORT, MOTOR_R_IN3_PIN, GPIO_PIN_SET);
     HAL_GPIO_WritePin(MOTOR_R_IN4_PORT, MOTOR_R_IN4_PIN, GPIO_PIN_SET);
 }
+
+static uint8_t motor_status = 0;  /* 0=停止, 1=前进, 2=刹车 */
+
+uint8_t Motor_GetStatus(void)
+{
+    return motor_status;
+}
