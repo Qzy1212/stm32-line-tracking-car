@@ -98,3 +98,19 @@ uint8_t Motor_GetStatus(void)
 {
     return motor_status;
 }
+
+/*
+ * 电机驱动模块说明:
+ *
+ * 1. Motor_Init()      - 初始化 L298N 方向控制引脚，默认停止
+ * 2. Motor_PWM_Init()  - 启动 TIM3 PWM 输出
+ * 3. Motor_SetSpeed()  - 设置左右电机速度 (范围 -1000~+1000)
+ *                        正值前进，负值后退，绝对值为 PWM 占空比
+ * 4. Motor_Forward()   - 设置双电机正转方向
+ * 5. Motor_Stop()      - 停止电机，PWM 归零
+ * 6. Motor_Brake()     - 短路制动，所有方向引脚置高
+ * 7. Motor_GetStatus() - 查询当前电机状态
+ *
+ * PWM 频率: 10kHz (TIM3 预分频由 CubeMX 配置)
+ * 占空比范围: 0~1000 (对应 0%~100%)
+ */
