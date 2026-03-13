@@ -19,6 +19,6 @@ int main(void)
     while (1)
     {
         Sensor_Read(&sensor_data);
-        /* TODO: 电机控制 */
+        PID_Calculate(&pid, (float)sensor_data.error);
     }
 }
