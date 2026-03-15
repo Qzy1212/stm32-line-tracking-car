@@ -114,3 +114,5 @@ uint8_t Motor_GetStatus(void)
  * PWM 频率: 10kHz (TIM3 预分频由 CubeMX 配置)
  * 占空比范围: 0~1000 (对应 0%~100%)
  */
+
+// 2025.11.20 王：优化PWM占空比范围，限制最大速度
